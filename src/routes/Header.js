@@ -7,7 +7,8 @@ function Header() {
       <h1>Shopping Cart</h1>
       <nav>
         <Link to="/view">View Product Details</Link> |{" "}
-        <Link to="/add">Add Product</Link>
+        <Link to="/add">Add Product</Link> |{" "}
+        <Link to="/edit">Edit Product</Link>
       </nav>
       <Outlet />
     </>

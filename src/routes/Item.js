@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import styles from "./Item.module.css";
 // import { getProduct } from "../data";
 
-function Item({ list, handlerDelete }) {
+function Item({ list, handlerDelete, handlerEdit }) {
   const { id } = useParams();
   const product = list.find((item) => item.id === id);
   const navigate = useNavigate();
@@ -22,6 +22,14 @@ function Item({ list, handlerDelete }) {
         }}
       >
         Delete
+      </button>
+      <button
+        onClick={() => {
+          navigate("/edit");
+          handlerEdit(id);
+        }}
+      >
+        Edit
       </button>
     </div>
   );
