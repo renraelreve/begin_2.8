@@ -23,9 +23,9 @@ function Add({ onAddProduct }) {
   function handleSubmit(e) {
     e.preventDefault();
     if (newProduct.name && newProduct.quantity && newProduct.price) {
-      const newProductWID = { ...newProduct, id: uuid() };
-      console.log(newProductWID);
-      onAddProduct(newProductWID);
+      const newProduct_WID = { ...newProduct, id: uuid() };
+      console.log(newProduct_WID);
+      onAddProduct(newProduct_WID);
       navigate("/view");
     } else {
       alert("Please complete the entries before adding product!");
