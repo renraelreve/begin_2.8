@@ -1,27 +1,31 @@
 import { v4 as uuid } from "uuid";
 import { useNavigate } from "react-router-dom";
 import styles from "./Add.module.css";
+import { useState } from "react";
 
 // Add.js
-function Add({
-  onAddProduct,
-  name,
-  quantity,
-  price,
-  discount,
-  onAddName,
-  onAddQuantity,
-  onAddPrice,
-  onAddDiscount,
-}) {
+function Add({ onAddProduct }) {
   const navigate = useNavigate();
+
+  const [newProduct, setNewProduct] = useState({
+    name: "",
+    quantity: 0,
+    price: 0,
+    discount: 0,
+  });
+
+  const newProductHandler = (e) => {
+    setNewProduct((prevState) => {
+      return { ...prevState, [e.target.name]: e.target.value };
+    });
+  };
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (name && quantity && price) {
-      const newProduct = { name, quantity, price, discount, id: uuid() };
-      console.log(newProduct);
-      onAddProduct(newProduct);
+    if (newProduct.name && newProduct.quantity && newProduct.price) {
+      const newProductWID = { ...newProduct, id: uuid() };
+      console.log(newProductWID);
+      onAddProduct(newProductWID);
       navigate("/view");
     } else {
       alert("Please complete the entries before adding product!");
@@ -35,44 +39,40 @@ function Add({
         <span>Name: </span>
         <input
           className={styles.input}
+          name="name"
           placeholder="Enter name"
           type="text"
-          value={name}
-          onChange={(e) => {
-            onAddName(e.target.value);
-          }}
+          value={newProduct.name}
+          onChange={newProductHandler}
         />
 
         <br />
         <span>Quantity: </span>
         <input
           className={styles.input}
+          name="quantity"
           type="number"
-          value={quantity}
-          onChange={(e) => {
-            onAddQuantity(Number(e.target.value));
-          }}
+          value={newProduct.quantity}
+          onChange={newProductHandler}
         />
         <br />
         <span>Price: </span>
         <input
           className={styles.input}
+          name="price"
           type="number"
-          value={price}
-          onChange={(e) => {
-            onAddPrice(Number(e.target.value));
-          }}
+          value={newProduct.price}
+          onChange={newProductHandler}
         />
 
         <br />
         <span>Discount: </span>
         <input
           className={styles.input}
+          name="discount"
           type="number"
-          value={discount}
-          onChange={(e) => {
-            onAddDiscount(Number(e.target.value));
-          }}
+          value={newProduct.discount}
+          onChange={newProductHandler}
         />
         <br />
         <button className={styles.button}>Add product</button>

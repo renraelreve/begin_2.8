@@ -12,10 +12,7 @@ import ItemDefault from "./routes/ItemDefault";
 
 function App() {
   const [list, setList] = useState(dummyData);
-  const [name, setName] = useState("");
-  const [quantity, setQuantity] = useState(0);
-  const [price, setPrice] = useState(0);
-  const [discount, setDiscount] = useState(0);
+
   const [editItem, setEditItem] = useState({});
 
   const DefaultPage = () => <p>Nothing to see here!</p>;
@@ -52,19 +49,6 @@ function App() {
     setList((list) => [...list, newProduct]);
   };
 
-  const handlerAddName = (i) => {
-    setName(i);
-  };
-  const handlerAddQuantity = (i) => {
-    setQuantity(i);
-  };
-  const handlerAddPrice = (i) => {
-    setPrice(i);
-  };
-  const handlerAddDiscount = (i) => {
-    setDiscount(i);
-  };
-
   return (
     <div className="App">
       <BrowserRouter>
@@ -85,19 +69,7 @@ function App() {
             </Route>
             <Route
               path="add"
-              element={
-                <Add
-                  name={name}
-                  quantity={quantity}
-                  price={price}
-                  discount={discount}
-                  onAddProduct={handlerAddProduct}
-                  onAddName={handlerAddName}
-                  onAddQuantity={handlerAddQuantity}
-                  onAddPrice={handlerAddPrice}
-                  onAddDiscount={handlerAddDiscount}
-                />
-              }
+              element={<Add onAddProduct={handlerAddProduct} />}
             />
             <Route
               path="edit/:id"
