@@ -1,14 +1,19 @@
-import { useState } from "react";
 import { v4 as uuid } from "uuid";
 import { useNavigate } from "react-router-dom";
 import styles from "./Add.module.css";
 
 // Add.js
-function Add({ onAddProduct }) {
-  const [name, setName] = useState("");
-  const [quantity, setQuantity] = useState(0);
-  const [price, setPrice] = useState(0);
-  const [discount, setDiscount] = useState(0);
+function Add({
+  onAddProduct,
+  name,
+  quantity,
+  price,
+  discount,
+  onAddName,
+  onAddQuantity,
+  onAddPrice,
+  onAddDiscount,
+}) {
   const navigate = useNavigate();
 
   function handleSubmit(e) {
@@ -34,7 +39,7 @@ function Add({ onAddProduct }) {
           type="text"
           value={name}
           onChange={(e) => {
-            setName(e.target.value);
+            onAddName(e.target.value);
           }}
         />
 
@@ -45,7 +50,7 @@ function Add({ onAddProduct }) {
           type="number"
           value={quantity}
           onChange={(e) => {
-            setQuantity(Number(e.target.value));
+            onAddQuantity(Number(e.target.value));
           }}
         />
         <br />
@@ -55,7 +60,7 @@ function Add({ onAddProduct }) {
           type="number"
           value={price}
           onChange={(e) => {
-            setPrice(Number(e.target.value));
+            onAddPrice(Number(e.target.value));
           }}
         />
 
@@ -66,7 +71,7 @@ function Add({ onAddProduct }) {
           type="number"
           value={discount}
           onChange={(e) => {
-            setDiscount(Number(e.target.value));
+            onAddDiscount(Number(e.target.value));
           }}
         />
         <br />
